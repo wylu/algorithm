@@ -232,6 +232,26 @@ class ListNode:
         self.next = None
 ```
 
+#### 快慢双指针
+
+```python
+def sf(head: ListNode) -> bool:
+    # Initialize slow & fast pointers
+    slow, fast = head, head
+
+    # Change this condition to fit specific problem.
+    # Attention: remember to avoid null-pointer error
+    while fast and fast.next:
+        slow = slow.next  # move slow pointer one step each time
+        fast = fast.next.next  # move fast pointer two steps each time
+        # change this condition to fit specific problem
+        if slow == fast:
+            return True
+
+    # change return value to fit specific problem
+    return False
+```
+
 #### 快慢指针判断链表是否有环
 
 ```python
@@ -278,6 +298,17 @@ def detectCycle(head: ListNode) -> ListNode:
 			slow = slow.next
 			fast = fast.next
 		return slow
+```
+
+#### 求两个单链表相交的起始节点
+
+```python
+def getIntersectionNode(self, ha: ListNode, hb: ListNode) -> ListNode:
+    ca, cb = ha, hb
+    while ca != cb:
+        ca = ca.next if ca else hb
+        cb = cb.next if cb else ha
+    return ca
 ```
 
 ## 组织结构
