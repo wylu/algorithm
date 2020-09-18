@@ -349,6 +349,22 @@ def getIntersectionNode(self, ha: ListNode, hb: ListNode) -> ListNode:
 
 #### Template1
 
+```python
+class UnionFind:
+    def __init__(self, n: int):
+        self.par = list(range(n))
+
+    def find(self, x: int) -> int:
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+
+    def union(self, x: int, y: int) -> None:
+        self.par[self.find(x)] = self.find(y)
+```
+
+#### Template2
+
 记录树的高度 + 路径压缩
 
 ```python
@@ -375,24 +391,6 @@ class UnionFind:
             if self.rank[x] == self.rank[y]:
                 self.rank[x] += 1
 ```
-
-#### Template2
-
-```python
-class UnionFind:
-    def __init__(self, n: int):
-        self.par = list(range(n))
-
-    def find(self, x: int) -> int:
-        if self.par[x] != x:
-            self.par[x] = self.find(self.par[x])
-        return self.par[x]
-
-    def union(self, x: int, y: int) -> None:
-        self.par[self.find(x)] = self.find(y)
-```
-
-#### 路径压缩思想的应用
 
 ## STL中的数据结构
 
