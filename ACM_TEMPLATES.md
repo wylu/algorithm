@@ -436,7 +436,7 @@ class UnionFind:
 
 ## 最小表示法
 
-# 串
+# 字符串
 
 ## KMP
 
