@@ -440,6 +440,37 @@ class UnionFind:
 
 ## KMP
 
+```python
+from typing import List
+
+
+# 计算失配指针
+def cal_fails(p: str) -> List[int]:
+    k, j, n = -1, 0, len(p)
+    fails = [-1] * n
+    while j < n - 1:
+        if k == -1 or p[k] == p[j]:
+            k += 1
+            j += 1
+            fails[j] = k
+        else:
+            k = fails[k]
+    return fails
+
+
+# 匹配
+def search(s: str, p: str) -> int:
+    fails = cal_fails(p)
+    i, j, sl, pl = 0, 0, len(s), len(p)
+    while i < sl and j < pl:
+        if j == -1 or s[i] == p[j]:
+            i += 1
+            j += 1
+        else:
+            j = fails[j]
+    return i - j if j == pl else -1
+```
+
 ## Trie结构
 
 ## 后缀树/后缀数组
