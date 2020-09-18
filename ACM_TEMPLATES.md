@@ -256,15 +256,15 @@ def sf(head: ListNode) -> bool:
 
 ```python
 def hasCycle(self, head: ListNode) -> bool:
-	if head:
-		slow, fast = head, head
-		while fast and fast.next:
-			slow = slow.next
-			fast = fast.next.next
-			if slow == fast:
-				return True
+    if head:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
 
-	return False
+    return False
 ```
 
 #### 求环的入口结点
@@ -281,23 +281,23 @@ Floyd 算法被划分成两个不同的 阶段 。在第一阶段，找出列表
 
 ```python
 def hasCycle(head: ListNode) -> ListNode:
-	if head:
-		slow, fast = head, head
-		while fast and fast.next:
-			slow = slow.next
-			fast = fast.next.next
-			if slow == fast:
-				return slow
+    if head:
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return slow
 
 
 def detectCycle(head: ListNode) -> ListNode:
-	fast = hasCycle(head)
-	if fast:
-		slow = head
-		while fast != slow:
-			slow = slow.next
-			fast = fast.next
-		return slow
+    fast = hasCycle(head)
+    if fast:
+        slow = head
+        while fast != slow:
+            slow = slow.next
+            fast = fast.next
+        return slow
 ```
 
 #### 求两个单链表相交的起始节点
@@ -347,7 +347,50 @@ def getIntersectionNode(self, ha: ListNode, hb: ListNode) -> ListNode:
 
 ### 并查集
 
+#### Template1
 
+记录树的高度 + 路径压缩
+
+```python
+class UnionFind:
+    def __init__(self, n: int):
+        self.par = list(range(n))  # 祖先结点
+        self.rank = [0] * n  # 树的高度
+
+    def find(self, x: int) -> int:
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+
+    def union(self, x: int, y: int) -> None:
+        x = self.find(x)
+        y = self.find(y)
+        if x == y:
+            return
+
+        if self.rank[x] < self.rank[y]:
+            self.par[x] = y
+        else:
+            self.par[y] = x
+            if self.rank[x] == self.rank[y]:
+                self.rank[x] += 1
+```
+
+#### Template2
+
+```python
+class UnionFind:
+    def __init__(self, n: int):
+        self.par = list(range(n))
+
+    def find(self, x: int) -> int:
+        if self.par[x] != x:
+            self.par[x] = self.find(self.par[x])
+        return self.par[x]
+
+    def union(self, x: int, y: int) -> None:
+        self.par[self.find(x)] = self.find(y)
+```
 
 #### 路径压缩思想的应用
 
