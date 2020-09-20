@@ -218,6 +218,30 @@
 
 # 数据结构
 
+## 数组
+
+### 前缀和
+
+```python
+def get_prefix_sum(nums: List[int]) -> List[int]:
+    n = len(nums)
+    ps = [0] * (n + 1)
+    for i in range(1, n + 1):
+        ps[i] = ps[i - 1] + nums[i - 1]
+    return ps
+```
+
+### 后缀和
+
+```python
+def get_suffix_sum(nums: List[int]) -> List[int]:
+    n = len(nums)
+    ss = [0] * (n + 1)
+    for i in range(n - 1, -1, -1):
+        ss[i] = ss[i + 1] + nums[i]
+    return ss
+```
+
 ## 线性结构
 
 ### 链表
