@@ -15,8 +15,8 @@ from typing import List
 def get_prefix_sum(nums: List[int]) -> List[int]:
     n = len(nums)
     ps = [0] * (n + 1)
-    for i in range(1, n + 1):
-        ps[i] = ps[i - 1] + nums[i - 1]
+    for i in range(n):
+        ps[i + 1] = ps[i] + nums[i]
     return ps
 
 
