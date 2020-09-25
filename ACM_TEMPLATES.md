@@ -212,6 +212,25 @@
 
 ## 素数问题
 
+### 埃拉托斯特尼筛法
+
+当一个数是素数的时候，它的倍数肯定不是素数，对于这些数可以直接标记筛除。
+
+```python
+from typing import List
+
+
+def eratosthenes_sieve(n: int) -> List[int]:
+    ans = []
+    marks = [True] * n
+    for i in range(2, n):
+        if marks[i]:
+            ans.append(i)
+            for j in range(i + i, n, i):
+                marks[j] = False
+    return ans
+```
+
 ### 概率判素算法
 
 ### 概率因子分解
