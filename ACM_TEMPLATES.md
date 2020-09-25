@@ -216,6 +216,8 @@
 
 当一个数是素数的时候，它的倍数肯定不是素数，对于这些数可以直接标记筛除。
 
+时间复杂度：O(n log log n)
+
 ```python
 from typing import List
 
@@ -228,6 +230,41 @@ def eratosthenes_sieve(n: int) -> List[int]:
             ans.append(i)
             for j in range(i + i, n, i):
                 marks[j] = False
+    return ans
+```
+
+### 欧拉线性筛法
+
+基本思路
+
+任意一个合数（2 不是合数），都可以表示成素数的乘积。
+
+每个合数必有一个最小素因子，如果每个合数都用最小素因子筛去，那个这个合数就
+
+不会被重复标记筛去，所以算法为线性时间复杂度。
+
+例如合数 30 = 2 * 3 * 5 ，这个合数一定是被最小素因子 2 筛去的。
+
+时间复杂度：O(n)
+
+```python
+from typing import List
+
+
+def euler_sieve(n: int) -> List[int]:
+    ans = []
+    # True 表示该下标值为素数
+    marks = [True] * n
+    for i in range(2, n):
+        if marks[i]:
+            ans.append(i)
+
+        j = 0
+        while j < len(ans) and i * ans[j] < n:
+            marks[i * ans[j]] = False
+            if i % ans[j] == 0:
+                break
+            j += 1
     return ans
 ```
 
