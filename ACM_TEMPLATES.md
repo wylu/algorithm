@@ -274,9 +274,11 @@ def euler_sieve(n: int) -> List[int]:
 
 # 数据结构
 
-## 数组
+## 线性结构
 
-### 前缀和
+### 数组
+
+#### 前缀和
 
 ```python
 def get_prefix_sum(nums: List[int]) -> List[int]:
@@ -287,7 +289,7 @@ def get_prefix_sum(nums: List[int]) -> List[int]:
     return ps
 ```
 
-### 后缀和
+#### 后缀和
 
 ```python
 def get_suffix_sum(nums: List[int]) -> List[int]:
@@ -298,7 +300,24 @@ def get_suffix_sum(nums: List[int]) -> List[int]:
     return ss
 ```
 
-## 线性结构
+#### 矩阵的转置
+
+```python
+"""
+1, 2, 3        1, 4, 7        1, 4, 7
+4, 5, 6   ->   2, 5, 6   ->   2, 5, 8
+7, 8, 9        3, 8, 9        3, 6, 9
+"""
+from typing import List
+
+
+def transpose(matrix: List[List[int]]) -> List[List[int]]:
+    n = len(matrix)
+    for i in range(n):
+        for j in range(i + 1, n):
+            matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
+    return matrix
+```
 
 ### 链表
 
