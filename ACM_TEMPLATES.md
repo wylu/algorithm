@@ -276,6 +276,47 @@ def euler_sieve(n: int) -> List[int]:
 
 ## 线性结构
 
+### 二分查找
+
+#### 模板 I
+
+模板 1 是二分查找的最基础和最基本的形式。这是一个标准的二分查找模板，用于查找可以通过访问数组中的单个索引来确定的元素或条件。
+
+**关键属性**
+
+- 二分查找的最基础和最基本的形式。
+- 查找条件可以在不与元素的两侧进行比较的情况下确定（或使用它周围的特定元素）。
+
+**区分语法**
+
+- 初始条件：left = 0, right = length-1
+- 终止：left > right
+- 向左查找：right = mid-1
+- 向右查找：left = mid+1
+
+```python
+def binarySearch(nums, target):
+    if len(nums) == 0:
+        return -1
+
+    left, right = 0, len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+
+    # End Condition: left > right
+    return -1
+```
+
+#### 模板 II
+
+#### 模板 III
+
 ### 数组
 
 #### 前缀和
