@@ -354,6 +354,35 @@ def binarySearch(nums, target):
     return -1
 ```
 
+##### 可用于搜索左边界或插入位置
+
+```python
+# 可用于搜索左边界或插入位置
+def searchLeftMargin(nums, target):
+    left, right = 0, len(nums)
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid
+    return left
+```
+
+##### 可用于搜索右边界或插入位置
+
+```python
+def searchRightMargin(nums, target):
+    left, right = 0, len(nums) - 1
+    while left < right:
+        mid = (left + right + 1) // 2
+        if nums[mid] <= target:
+            left = mid
+        else:
+            right = mid - 1
+    return left
+```
+
 #### 模板 III
 
 ### 数组

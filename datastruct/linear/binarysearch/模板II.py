@@ -48,9 +48,41 @@ def binarySearch(nums, target):
     return -1
 
 
+# 可用于搜索左边界或插入位置
+def searchLeftMargin(nums, target):
+    left, right = 0, len(nums)
+    while left < right:
+        mid = (left + right) // 2
+        if nums[mid] < target:
+            left = mid + 1
+        else:
+            right = mid
+    return left
+
+
+# 可用于搜索右边界或插入位置
+def searchRightMargin(nums, target):
+    left, right = 0, len(nums) - 1
+    while left < right:
+        mid = (left + right + 1) // 2
+        if nums[mid] <= target:
+            left = mid
+        else:
+            right = mid - 1
+    return left
+
+
 if __name__ == "__main__":
     print(binarySearch([1, 2, 3, 4, 5], 3))
-    # 修改模板直接返回 left，可用于搜索插入位置
-    print(binarySearch([1, 2, 4, 5], 3))
-    print(binarySearch([1, 2, 3, 4], 5))
-    print(binarySearch([2, 3, 4, 5], 1))
+
+    print('\n================= 搜索左边界 =================')
+    print(searchLeftMargin([5, 7, 7, 8, 8, 10], 8))
+    print(searchLeftMargin([5, 7, 7, 8, 8, 10], 6))
+    print(searchLeftMargin([7, 7, 8, 8], 7))
+    print(searchLeftMargin([7, 7, 8, 8], 8))
+
+    print('\n================= 搜索右边界 =================')
+    print(searchRightMargin([5, 7, 7, 8, 8, 10], 8))
+    print(searchRightMargin([5, 7, 7, 8, 8, 10], 6))
+    print(searchRightMargin([7, 7, 8, 8], 7))
+    print(searchRightMargin([7, 7, 8, 8], 8))
