@@ -272,6 +272,26 @@ def euler_sieve(n: int) -> List[int]:
 
 ### 概率因子分解
 
+## 快速幂
+
+[https://oi-wiki.org/math/quick-pow/](https://oi-wiki.org/math/quick-pow/)
+
+```python
+def quick_pow(a, b):
+    if b < 0:
+        b = -b
+        a = 1 / a
+
+    ans = 1
+    while b > 0:
+        if b & 1 == 1:
+            ans *= a
+        a *= a
+        b >>= 1
+
+    return ans
+```
+
 # 数据结构
 
 ## 线性结构
