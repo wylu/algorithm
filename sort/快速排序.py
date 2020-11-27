@@ -8,6 +8,11 @@
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
 @Desc    :
+快速排序（Quicksort），又称分区交换排序（partition-exchange sort），
+简称快排，是一种高效的排序算法。由英国计算机科学家 Tony Hoare 于 1959
+年开发并于 1961 年发表，至今它仍然是一种常用的排序算法。事实上，如果
+实施得当，它可以比归并排序、堆排序快两到三倍。
+
 基本原理
 快速排序是图灵奖得主 C. R. A. Hoare 于 1960 年提出的一种划分交换排序，
 它采用了一种分治的策略，通常称其为 分治法(Divide-and-ConquerMethod)。
