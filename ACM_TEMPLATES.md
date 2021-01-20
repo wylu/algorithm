@@ -172,6 +172,16 @@
 
 ## 最大公约数
 
+```python
+def gcd(x: int, y: int) -> int:
+    return x if y == 0 else gcd(y, x % y)
+
+
+if __name__ == "__main__":
+    print(gcd(12, 4))
+    print(gcd(12, 3))
+```
+
 ### Euclid算法
 
 #### 扩展的Euclid算法
@@ -231,6 +241,10 @@ def eratosthenes_sieve(n: int) -> List[int]:
             for j in range(i + i, n, i):
                 marks[j] = False
     return ans
+
+
+if __name__ == "__main__":
+    print(eratosthenes_sieve(100))
 ```
 
 ### 欧拉线性筛法
@@ -266,6 +280,11 @@ def euler_sieve(n: int) -> List[int]:
                 break
             j += 1
     return ans
+
+
+if __name__ == "__main__":
+    print(euler_sieve(100))
+
 ```
 
 ### 概率判素算法
@@ -290,7 +309,98 @@ def quick_pow(a, b):
         b >>= 1
 
     return ans
+
+
+if __name__ == "__main__":
+    print(quick_pow(2, 10))
+    print(quick_pow(2.0, 10))
+    print(quick_pow(2.0, -10))
 ```
+
+## 格雷码
+
+格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数的差异。格雷编码序列必须以 0 开头。
+
+**方法一：**
+
+格雷编码：
+
+设 G(n) 表示总位数为 n 的各类编码集合，根据以下策略可以求出 G(n+1)
+
+1. 将 G(n) 的每个元素前添加 0 得到 G'(n)；
+2. 将 G'(n) 反转得到镜像 R(n)，在 R(n) 中的每个元素前添加 1 得到 R'(n)；
+3. 将 G'(n) 与 R'(n) 合并得到 G(n+1)；
+
+编码思路：
+
+1. 初始化 G(0) 和位数标识 base；
+
+2. 外层循环次数为总位数 n；
+
+3. 内层循环倒序遍历 res，位数标识加上当前索引对应的值，即为 R'(n) 中的元素；
+4. 在 res 后追加上述计算的元素，遍历结束，得到 Gray 编码集；
+
+**方法二：**
+
+二进制转格雷码公式：
+
+```text
+某二进制数：         B[n-1],B[n-2],...,B[2],B[1],B[0]
+其对应的格雷码：      G[n-1],G[n-2],...,G[2],G[1],G[0]
+其中：最高位保留      G[n-1] = B[n-1]
+     其它各位        G[i] = B[i+1] ^ B[i],  i = 0, 1, 2, ..., n-2
+
+https://pic.leetcode-cn.com/1013850d7f6c8cf1d99dc0ac3292264b74f6a52d84e0215f540c80952e184f41-image.png
+
+例如：二进制数为      1  0  1  1  0
+                   |\ |\ |\ |\ |  # noqa W605
+                   | \| \| \| \|  # noqa W605
+                   |  ^  ^  ^  ^
+                   |  |  |  |  |
+     格雷码为：      1  1  1  0  1
+```
+
+遍历 0 到 2^(n-1)，利用公式转换，即最高位保留，其它位是当前位和它的高一位进行异或操作。
+
+```python
+from typing import List
+
+
+def binary2graycode(n: int) -> int:
+    return n ^ (n >> 1)
+
+
+def gen_gray_code_seq(n: int) -> List[int]:
+    ans, base = [0], 1
+    for i in range(n):
+        for j in range(len(ans) - 1, -1, -1):
+            ans.append(base + ans[j])
+        base <<= 1
+    return ans
+
+
+def gen_gray_code_seq2(n: int) -> List[int]:
+    ans = []
+    start, end = 0, 1 << n
+    while start < end:
+        ans.append(start ^ (start >> 1))
+        start += 1
+    return ans
+
+
+if __name__ == "__main__":
+    print(gen_gray_code_seq(3))
+    print(gen_gray_code_seq2(3))
+
+    print(gen_gray_code_seq(4))
+    print(gen_gray_code_seq2(4))
+
+    print(binary2graycode(2))  # 2(10) => 3(11)
+    print(binary2graycode(3))  # 3(11) => 2(10)
+    print(binary2graycode(6))  # 6(110) => 5(101)
+```
+
+
 
 # 数据结构
 
@@ -331,6 +441,11 @@ def binarySearch(nums, target):
 
     # End Condition: left > right
     return -1
+
+
+if __name__ == "__main__":
+    print(binarySearch([-1, 0, 3, 5, 9, 12], 9))
+    print(binarySearch([-1, 0, 3, 5, 9, 12], 2))
 ```
 
 #### 模板 II
@@ -387,6 +502,16 @@ def searchLeftMargin(nums, target):
         else:
             right = mid
     return left
+
+
+if __name__ == "__main__":
+    print(binarySearch([1, 2, 3, 4, 5], 3))
+
+    print('\n================= 搜索左边界 =================')
+    print(searchLeftMargin([5, 7, 7, 8, 8, 10], 8))
+    print(searchLeftMargin([5, 7, 7, 8, 8, 10], 6))
+    print(searchLeftMargin([7, 7, 8, 8], 7))
+    print(searchLeftMargin([7, 7, 8, 8], 8))
 ```
 
 ##### 可用于搜索右边界或插入位置
@@ -401,6 +526,16 @@ def searchRightMargin(nums, target):
         else:
             right = mid - 1
     return left
+
+
+if __name__ == "__main__":
+    print(binarySearch([1, 2, 3, 4, 5], 3))
+
+    print('\n================= 搜索右边界 =================')
+    print(searchRightMargin([5, 7, 7, 8, 8, 10], 8))
+    print(searchRightMargin([5, 7, 7, 8, 8, 10], 6))
+    print(searchRightMargin([7, 7, 8, 8], 7))
+    print(searchRightMargin([7, 7, 8, 8], 8))
 ```
 
 #### 模板 III
@@ -451,23 +586,37 @@ def binarySearch(nums, target):
 #### 前缀和
 
 ```python
+from typing import List
+
+
 def get_prefix_sum(nums: List[int]) -> List[int]:
     n = len(nums)
     ps = [0] * (n + 1)
-    for i in range(1, n + 1):
-        ps[i] = ps[i - 1] + nums[i - 1]
+    for i in range(n):
+        ps[i + 1] = ps[i] + nums[i]
     return ps
+
+
+if __name__ == "__main__":
+    print(get_prefix_sum([1, 2, 3, 4, 5]))
 ```
 
 #### 后缀和
 
 ```python
+from typing import List
+
+
 def get_suffix_sum(nums: List[int]) -> List[int]:
     n = len(nums)
     ss = [0] * (n + 1)
     for i in range(n - 1, -1, -1):
         ss[i] = ss[i + 1] + nums[i]
     return ss
+
+
+if __name__ == "__main__":
+    print(get_suffix_sum([5, 4, 3, 2, 1]))
 ```
 
 #### 矩阵的转置
@@ -487,6 +636,11 @@ def transpose(matrix: List[List[int]]) -> List[List[int]]:
         for j in range(i + 1, n):
             matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
     return matrix
+
+
+if __name__ == "__main__":
+    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    print(transpose(matrix))
 ```
 
 ### 链表
@@ -504,6 +658,13 @@ class ListNode:
 #### 快慢双指针
 
 ```python
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val):
+        self.val = val
+        self.next = None
+
+
 def sf(head: ListNode) -> bool:
     # Initialize slow & fast pointers
     slow, fast = head, head
@@ -519,6 +680,37 @@ def sf(head: ListNode) -> bool:
 
     # change return value to fit specific problem
     return False
+
+
+if __name__ == '__main__':
+
+    def mk_alist(*args):
+        dummy = ListNode(0)
+        cur = dummy
+        for val in args:
+            cur.next = ListNode(val)
+            cur = cur.next
+        return dummy.next
+
+    def to_list(head):
+        res = []
+        while head:
+            res.append(head.val)
+            head = head.next
+        return res
+
+    head = mk_alist(1, 2, 3, 4, 5)
+    # print(to_list(head))
+
+    # make a ring
+    cur, node3 = head, None
+    for i in range(4):
+        if i == 2:
+            node3 = cur
+        cur = cur.next
+    cur.next = node3
+
+    print(sf(head))
 ```
 
 #### 快慢指针判断链表是否有环
@@ -581,6 +773,100 @@ def getIntersectionNode(self, ha: ListNode, hb: ListNode) -> ListNode:
 
 ### 二叉堆
 
+堆（Heap）是计算机科学中的一种特别的树状数据结构。若是满足以下特性，即可称为堆：“给定堆中任意节点 P 和 C，若 P 是 C 的父节点，那么 P的值会小于等于（或大于等于） C 的值”。
+
+堆始于 J._W._J._Williams 在 1964 年发表的堆排序（heap sort），当时他提出了二叉堆树作为此算法的数据结构。堆在 Dijkstra 等几种有效的图形算法中也非常重要。
+
+堆是一种称为优先级队列的抽象数据类型的最有效实现，实际上优先级队列通常被称为“堆”，而不管它们如何实现。
+
+严格来说，堆也有不同的种类。二叉堆本质上是完全二叉树，可以分为两种类型：
+
+- 最大堆（大顶堆）
+- 最小堆（小顶堆）
+
+二叉堆的根节点叫做 堆顶。最大堆和最小堆的特点，决定了在最大堆的堆顶是整个堆中的 最大元素；最小堆的堆顶是整个堆中的 最小元素。
+
+**堆的逻辑结构与物理存储：**
+
+二叉堆在逻辑上虽然是一颗完全二叉树，但它的存储方式并不是链式存储，而是顺序存储。换句话说，二叉堆的所有节点都存储在数组当中。
+
+树的节点是按从上到下、从左到右的顺序紧凑排列的。
+
+利用数组下标作为节点编号，假设父节点的下标是 parent，则有
+
+- `左儿子的下标 = 2 * parent + 1`
+- `右儿子的下标 = 2 * parent + 2`
+
+```python
+class MinimumHeap:
+    def __init__(self):
+        self._heap = []
+        self._size = 0
+
+    def _floating(self, i: int, x: int) -> None:
+        """上浮
+
+        Args:
+            i (int): 插入节点的索引
+            x (int): 插入节点
+        """
+        while i > 0:
+            # 父节点的索引
+            p = (i - 1) // 2
+            # 如果已经没有大小颠倒则退出
+            if self._heap[p] <= x:
+                break
+            # 自己上浮
+            self._heap[i] = self._heap[p]
+            i = p
+        self._heap[i] = x
+
+    def _sinking(self, x: int) -> None:
+        """下沉
+
+        Args:
+            x (int): 堆顶节点
+        """
+        i = 0
+        while i * 2 + 1 < self._size:
+            # 比较子节点的值
+            a, b = i * 2 + 1, i * 2 + 2
+            if b < self._size and self._heap[b] < self._heap[a]:
+                a = b
+            # 如果已经没有大小颠倒则退出
+            if self._heap[a] >= x:
+                break
+            # 自己下沉
+            self._heap[i] = self._heap[a]
+            i = a
+        self._heap[i] = x
+
+    def __len__(self):
+        return self._size
+
+    def push(self, x: int) -> None:
+        self._heap.append(0)
+        self._floating(self._size, x)
+        self._size += 1
+
+    def pop(self) -> int:
+        ans = self._heap[0]
+        self._sinking(self._heap[self._size - 1])
+        self._size -= 1
+        return ans
+
+    def top(self) -> int:
+        return self._heap[0]
+
+
+if __name__ == "__main__":
+    heap = MinimumHeap()
+    for num in [3, 1, 4, 9, 6, 0, 7, 2, 5, 8]:
+        heap.push(num)
+
+    print([heap.pop() for _ in range(len(heap))])
+```
+
 ### 左偏树
 
 ### 二项树
@@ -627,6 +913,23 @@ class UnionFind:
 
     def union(self, x: int, y: int) -> None:
         self.par[self.find(x)] = self.find(y)
+
+
+if __name__ == '__main__':
+    n = 10
+    uf = UnionFind(n + 1)
+    uf.union(1, 2)
+    uf.union(1, 5)
+    print(uf.find(2), uf.find(5))
+    print(uf.find(2), uf.find(4))
+
+    uf.union(6, 4)
+    uf.union(4, 7)
+    print(uf.find(6), uf.find(7))
+    print(uf.find(2), uf.find(4))
+
+    uf.union(5, 7)
+    print(uf.find(2), uf.find(4))
 ```
 
 #### Template2
@@ -656,6 +959,23 @@ class UnionFind:
             self.par[y] = x
             if self.rank[x] == self.rank[y]:
                 self.rank[x] += 1
+
+
+if __name__ == '__main__':
+    n = 10
+    uf = UnionFind(n + 1)
+    uf.union(1, 2)
+    uf.union(1, 5)
+    print(uf.find(2), uf.find(5))
+    print(uf.find(2), uf.find(4))
+
+    uf.union(6, 4)
+    uf.union(4, 7)
+    print(uf.find(6), uf.find(7))
+    print(uf.find(2), uf.find(4))
+
+    uf.union(5, 7)
+    print(uf.find(2), uf.find(4))
 ```
 
 ## STL中的数据结构
@@ -706,6 +1026,29 @@ class UnionFind:
 
 ## KMP 算法
 
+KMP 利用之前已经部分匹配这个有效信息，保持 i 不回溯，通过修改 j 的位置，让模式串尽量地移动到有效的位置，而模式串移动的信息存在 next 数组中。
+
+KMP 算法的关键是 next 数组的计算，next 数组的计算只与模式串有关，next 中存储的值为当前下标之前的子串的 最长相同前缀和后缀的长度。
+
+如模式串 "ABCDABD" 的 next 数组：
+
+```text
+    i         0  1  2  3  4  5  6
+    pattern   A  B  C  D  A  B  D
+    next[i]  -1	 0  0  0  0  1  2
+```
+
+注：next[0] 设为 -1
+
+已知 `next[j] = k`，如何求出 `next[j+1]`？
+
+- 如果 `p[j] == p[k]` ，则 `next[j+1] = next[j] + 1 = k + 1`；
+
+- 如果 `p[j] != p[k]`， 则令 `k = next[k]`；
+
+  - 如果此时 `p[j] == p[k]`，则 `next[j+1] = k+1`；
+  - 如果不相等，则继续递归前缀索引，令 `k = next[k]`，继续判断，直至 `k = -1` (即 `k = next[0]` )​  或者 `p[j] == p[k]` 为止；
+
 ```python
 from typing import List
 
@@ -735,6 +1078,25 @@ def search(s: str, p: str) -> int:
         else:
             j = fails[j]
     return i - j if j == pl else -1
+
+
+if __name__ == '__main__':
+    pattern = 'ABCDABD'
+    fails = cal_fails(pattern)
+    print(fails)
+
+    source = 'BBC ABCDAB ABCDABCDABDE'
+    start = search(source, pattern)
+    end = start + len(pattern)
+
+    for ch in source:
+        print('{: >2}'.format(ch), end=' ')
+    print()
+    for i in range(len(source)):
+        print('{: >2}'.format(i), end=' ')
+    print()
+
+    print(start, end, source[start:end])
 ```
 
 ### 最长回文前缀
@@ -817,9 +1179,120 @@ def get_longest_palindrome_suffix(s: str) -> int:
 
 ## 快速排序
 
+快速排序（Quicksort），又称分区交换排序（partition-exchange sort），简称快排，是一种高效的排序算法。由英国计算机科学家 Tony Hoare 于 1959年开发并于 1961 年发表，至今它仍然是一种常用的排序算法。事实上，如果实施得当，它可以比归并排序、堆排序快两到三倍。
+
+**基本原理：**
+
+快速排序是图灵奖得主 C. R. A. Hoare 于 1960 年提出的一种划分交换排序，它采用了一种分治的策略，通常称其为 分治法(Divide-and-ConquerMethod)。分治法的基本思想是：将原问题分解为若干个规模更小但结构与原问题相似的子问题。递归地求解这些子问题，然后将这些子问题的解组合为原问题的解。
+
+**算法步骤：**
+
+1. 从序列中挑出一个元素，作为"基准" (pivot)；
+2. 把所有比基准值小的元素放在基准前面，所有比基准值大的元素放在基准值的后面（相同的数可以放到任一边），这个操作称为分区 (partition) 操作，分区操作结束后，基准元素所处的位置就是最终排序后它的位置；
+3. 递归地把小于基准值元素的子数列和大于基准值元素的子数列排序，直到所有子序列的大小为 0 或 1，这时整体已经排好序了；
+
+```python
+from typing import List
+
+
+def partition(nums: List[int], left: int, right: int) -> None:
+    j = left - 1
+    for i in range(left, right):
+        if nums[i] <= nums[right]:
+            j += 1
+            nums[i], nums[j] = nums[j], nums[i]
+    j += 1
+    nums[j], nums[right] = nums[right], nums[j]
+    return j
+
+
+def quick_sort(nums: List[int], left: int, right: int) -> None:
+    if left < right:
+        idx = partition(nums, left, right)
+        quick_sort(nums, left, idx - 1)
+        quick_sort(nums, idx + 1, right)
+
+
+if __name__ == "__main__":
+    nums = [3, 1, 4, 9, 6, 0, 7, 2, 5, 8]
+    quick_sort(nums, 0, len(nums) - 1)
+    print(nums)
+```
+
 ## 堆排序
 
 ## 归并排序
+
+归并排序（Merge sort），是创建在归并操作上的一种基于比较的排序算法。1945 年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用，且各层分治递归可以同时进行。
+
+**基本原理：**
+
+归并排序算法是分治策略实现对 n 个元素进行排序的算法。其基本思想是：将待排序元素分成大小大致相同的 2 个子集合，分别对 2 个子集合进行排序，最终将排好序的子集合合并成为所要求的排好序的集合。
+
+**算法步骤：**
+
+1. 申请空间，使其大小为两个已经排序序列之和，该空间用来存放合并后的序列；
+2. 设定两个指针，最初位置分别为两个已经排序序列的起始位置；
+3. 比较两个指针所指向的元素，选择相对小的元素放入到合并空间，并移动指针到下一位置；
+4. 重复步骤 3 直到某一指针到达序列尾；
+5. 将另一序列剩下的所有元素直接复制到合并序列尾；
+
+```shell
+from typing import List
+
+
+def merge(nums: List[int], left: int, mid: int, right: int) -> None:
+    tmp = [0] * (right - left + 1)
+    i, j, k = left, mid + 1, 0
+    while i <= mid or j <= right:
+        if i > mid:
+            tmp[k] = nums[j]
+            j += 1
+        elif j > right:
+            tmp[k] = nums[i]
+            i += 1
+        else:
+            if nums[i] <= nums[j]:
+                tmp[k] = nums[i]
+                i += 1
+            else:
+                tmp[k] = nums[j]
+                j += 1
+        k += 1
+
+    for i in range(k):
+        nums[left + i] = tmp[i]
+
+
+def merge_sort(nums: List[int], left: int, right: int) -> None:
+    if left < right:
+        mid = (left + right) // 2
+        merge_sort(nums, left, mid)
+        merge_sort(nums, mid + 1, right)
+        merge(nums, left, mid, right)
+
+
+def merge_sort2(nums: List[int], left: int, right: int) -> None:
+    size, n = 1, len(nums)
+    while size < n:
+        left = 0
+        while left + size < n:
+            mid = left + size - 1
+            right = min(mid + size, n - 1)
+            merge(nums, left, mid, right)
+            left = right + 1
+        size *= 2
+
+
+if __name__ == "__main__":
+    nums = [3, 1, 4, 9, 6, 0, 7, 2, 5, 8]
+    merge_sort(nums, 0, len(nums) - 1)
+    print(nums)
+
+    nums = [3, 1, 4, 9, 6, 0, 7, 2, 5, 8]
+    merge_sort2(nums, 0, len(nums) - 1)
+    print(nums)
+```
 
 ## 基数排序
 

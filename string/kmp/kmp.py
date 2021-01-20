@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   KMP.py
+@File    :   kmp.py
 @Time    :   2020/09/18 09:51:15
 @Author  :   wylu
 @Version :   1.0
