@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   欧拉线性筛法.py
+@File    :   euler_linear_sieve.py
 @Time    :   2020/09/25 22:43:21
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
-欧拉线性筛法
+@Desc    :   欧拉线性筛法
 
 基本思路
 任意一个合数（2 不是合数），都可以表示成素数的乘积。

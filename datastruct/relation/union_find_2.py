@@ -1,20 +1,19 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   并查集.py
-@Time    :   2020/09/17 15:27:19
+@File    :   union_find_2.py
+@Time    :   2020/09/18 09:05:01
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   并查集II
 """
 
 
 class UnionFind:
     def __init__(self, n: int):
-        self.par = list(range(n))  # 祖先结点
-        self.rank = [0] * n  # 树的高度
+        self.par = list(range(n))
 
     def find(self, x: int) -> int:
         if self.par[x] != x:
@@ -22,17 +21,7 @@ class UnionFind:
         return self.par[x]
 
     def union(self, x: int, y: int) -> None:
-        x = self.find(x)
-        y = self.find(y)
-        if x == y:
-            return
-
-        if self.rank[x] < self.rank[y]:
-            self.par[x] = y
-        else:
-            self.par[y] = x
-            if self.rank[x] == self.rank[y]:
-                self.rank[x] += 1
+        self.par[self.find(x)] = self.find(y)
 
 
 if __name__ == '__main__':

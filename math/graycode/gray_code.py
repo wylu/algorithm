@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   格雷码.py
+@File    :   gray_code.py
 @Time    :   2020/12/26 10:50:25
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   格雷码
+
 格雷编码是一个二进制数字系统，在该系统中，两个连续的数值仅有一个位数
 的差异。格雷编码序列必须以 0 开头。
 

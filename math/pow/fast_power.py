@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   快速幂.py
+@File    :   fast_power.py
 @Time    :   2020/10/04 23:54:10
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   快速幂
 
 https://oi-wiki.org/math/quick-pow/
 """

@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   模板III.py
+@File    :   template_3.py
 @Time    :   2020/10/03 12:07:45
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   模板III
+
 模板 #3 是二分查找的另一种独特形式。它用于搜索需要访问当前索引
 及其在数组中的直接左右邻居索引的元素或条件。
 

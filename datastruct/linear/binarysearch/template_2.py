@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   模板II.py
+@File    :   template_2.py
 @Time    :   2020/10/03 10:49:39
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   模板II
+
 模板 #2 是二分查找的高级模板。它用于查找需要访问数组中当前索引
 及其直接右邻居索引的元素或条件。
 

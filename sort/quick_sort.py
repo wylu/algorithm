@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   快速排序.py
+@File    :   quick_sort.py
 @Time    :   2020/11/27 13:26:45
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   快速排序
+
 快速排序（Quicksort），又称分区交换排序（partition-exchange sort），
 简称快排，是一种高效的排序算法。由英国计算机科学家 Tony Hoare 于 1959
 年开发并于 1961 年发表，至今它仍然是一种常用的排序算法。事实上，如果

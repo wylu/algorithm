@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   快慢双指针.py
+@File    :   fast_slow_dual_pointer.py
 @Time    :   2020/09/15 19:37:47
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   快慢双指针
 """
 
 

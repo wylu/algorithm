@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   模板I.py
+@File    :   template_1.py
 @Time    :   2020/10/02 23:12:29
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   模板I
+
 模板 #1 是二分查找的最基础和最基本的形式。这是一个标准的二分查找模板，
 用于查找可以通过访问数组中的单个索引来确定的元素或条件。
 

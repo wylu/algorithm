@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   堆.py
+@File    :   heap.py
 @Time    :   2020/11/27 14:25:14
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   堆
+
 堆（Heap）是计算机科学中的一种特别的树状数据结构。若是满足以下特性，
 即可称为堆：“给定堆中任意节点 P 和 C，若 P 是 C 的父节点，那么 P
 的值会小于等于（或大于等于） C 的值”。

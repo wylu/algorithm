@@ -1,14 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   埃拉托斯特尼筛法.py
+@File    :   eratosthenes_sieve.py
 @Time    :   2020/09/25 22:21:25
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
-埃拉托斯特尼筛法
+@Desc    :   埃拉托斯特尼筛法
 
 当一个数是素数的时候，它的倍数肯定不是素数，对于这些数可以直接标记筛除。
 

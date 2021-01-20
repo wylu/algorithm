@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-@File    :   归并排序.py
+@File    :   merge_sort.py
 @Time    :   2020/11/27 13:43:28
 @Author  :   wylu
 @Version :   1.0
 @Contact :   15wylu@gmail.com
 @License :   Copyright © 2020, wylu-CHINA-SHENZHEN. All rights reserved.
-@Desc    :
+@Desc    :   归并排序
+
 归并排序（Merge sort），是创建在归并操作上的一种基于比较的排序算法。
 1945 年由约翰·冯·诺伊曼首次提出。该算法是采用分治法（Divide and Conquer）
 的一个非常典型的应用，且各层分治递归可以同时进行。
